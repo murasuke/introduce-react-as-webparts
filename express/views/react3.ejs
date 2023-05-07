@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>show react 1</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h2>Webページの一部にReactコンポーネントを表示する</h2>
+    <p>
+      Reactコンポーネントを2つ表示する
+    </p>
+    <div id="root1"></div>
+    <hr />
+    <div id="root2"></div>
+    <div>
+       <p><a href='/'>トップページへ戻る</a></p>
+    </div>
+  </body>
+  <script type="module">
+    import {ReactDOMClient, React, Counter} from '/dist/lib.esm.js';
+    const $ = (selectors) => document.querySelector(selectors);
+    // const {ReactDOMClient, React, Counter} = MyBundle;
+    const renderComponent = (id, value) => {
+      const root = ReactDOMClient.createRoot($(id));
+      root.render(React.createElement(Counter,{initVal: value}));
+    };
+    renderComponent('#root1', 1);
+    renderComponent('#root2', 2);
+  </script>
+</html>

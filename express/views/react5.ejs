@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>show react 1</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h2>Component外部のイベントを、React側に通知する</h2>
+    <p>
+      カスタムイベント経由で通知する
+
+      <p>
+        <button id="outerButton">クリックすると下記コンポーネントに時間を追記</button>
+      </p>
+    </p>
+    <div id="root"></div>
+    <hr />
+    <div>
+       <p><a href='/'>トップページへ戻る</a></p>
+    </div>
+  </body>
+  <script type="module">
+    import {ReactDOMClient, React, EventReceiver} from '/dist/lib.esm.js';
+    const $ = (selectors) => document.querySelector(selectors);
+    $('#outerButton').addEventListener('click', () => {
+        // イベントを配信
+        const event = new CustomEvent('ButtonClick', {detail: new Date()});
+        document.dispatchEvent(event);
+    });
+
+    const root = ReactDOMClient.createRoot($('#root'));
+    root.render(
+      React.createElement(EventReceiver)
+    );
+  </script>
+</html>

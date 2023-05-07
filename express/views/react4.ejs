@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>show react 1</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h2>React側のイベントを、非SPAページ側に通知する</h2>
+    <p>
+      コールバック関数を引き渡す
+
+      <p>
+        callback:
+        <span id="callback">
+      </p>
+    </p>
+    <div id="root"></div>
+    <hr />
+    <div>
+       <p><a href='/'>トップページへ戻る</a></p>
+    </div>
+  </body>
+  <script type="module">
+    import {ReactDOMClient, React, Counter} from '/dist/lib.esm.js';
+    const $ = (selectors) => document.querySelector(selectors);
+    const root = ReactDOMClient.createRoot($('#root'));
+
+    root.render(
+      React.createElement(Counter2,{
+        callback: (val)=> $('#callback').innerText = `${val}`}
+      )
+    );
+  </script>
+</html>

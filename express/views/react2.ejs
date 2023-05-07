@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>show react 1</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h2>Webページの一部にReactコンポーネントを表示する</h2>
+    <p>
+      コンポーネントに初期値を与える(サーバ側でランダムな値を生成してセットする)
+    </p>
+    <div id="root"></div>
+    <div>
+       <p><a href='/'>トップページへ戻る</a></p>
+    </div>
+  </body>
+  <script type="module">
+    var val = <%= initVal %>;
+    // const {ReactDOMClient, React, Counter} = MyBundle;
+    import {ReactDOMClient, React, Counter} from '/dist/lib.esm.js';
+    const container = document.getElementById('root');
+    const root = ReactDOMClient.createRoot(container);
+    root.render(React.createElement(Counter,{initVal:val}));
+  </script>
+</html>
