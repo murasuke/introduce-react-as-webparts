@@ -11,22 +11,23 @@ const packageJson = require('./package.json');
 export default {
   input: 'src/lib.ts',
   output: [
+    // { // node用(commonjs)
+    //   file: packageJson.main,
+    //   format: 'cjs',
+    //   sourcemap: true,
+    // },
     {
-      file: packageJson.main,
-      format: 'cjs',
-      sourcemap: true,
-    },
-    {
+      // esmodule
       file: packageJson.module,
       format: 'esm',
       sourcemap: true,
     },
-    {
-      file: packageJson.umd,
-      format: 'umd',
-      name: 'MyBundle',
-      sourcemap: true,
-    },
+    // { // esmoduleを使えない環境用
+    //   file: packageJson.umd,
+    //   format: 'umd',
+    //   name: 'MyBundle',
+    //   sourcemap: true,
+    // },
   ],
   plugins: [
     del({ targets: 'dist/*' }),
